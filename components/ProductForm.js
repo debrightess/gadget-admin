@@ -2,12 +2,18 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-export default function ProductForm() {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [price, setPrice] = useState('')
+export default function ProductForm({
+  title: existingTitle,
+  description: existingDescription,
+  price: existingPrice,
+}) {
+  const [title, setTitle] = useState(existingTitle || '')
+  const [description, setDescription] = useState(existingDescription || '')
+  const [price, setPrice] = useState(existingPrice || '')
   const [goToProducts, setGoToProducts] = useState(false)
+
   const router = useRouter()
+
   async function createProduct(ev) {
     ev.preventDefault()
     const data = { title, description, price }
@@ -21,7 +27,6 @@ export default function ProductForm() {
 
   return (
     <form onSubmit={createProduct}>
-      <h1>New Product</h1>
       <label>Prodcut name</label>
       <input
         type='text'
