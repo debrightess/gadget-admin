@@ -28,6 +28,7 @@ export default function Products() {
         </thead>
         <tbody>
           {products.map((product) => (
+            // eslint-disable-next-line react/jsx-key
             <tr>
               <td>{product.title}</td>
               <td>
